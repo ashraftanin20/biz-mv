@@ -1,0 +1,59 @@
+<div class="wrapper">
+    <h2>Excel Import/Export</h2>
+    <table mat-table [dataSource]="tableNames" class="table mat-elevation-z8 demo-table">
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="schema">
+            <th mat-header-cell *matHeaderCellDef> Schema </th>
+            <td mat-cell *matCellDef="let element">
+                <!-- <input
+                type="file"
+                name="image"
+                ng2FileSelect
+                [uploader]="uploader"
+              /> 
+              <button mat-raised-button type="button"
+                (click)="uploader.uploadAll()"
+                
+                >
+                Upload
+                </button> -->
+                <ngx-dropzone (change)="onSelect($event)" class="dropzone">
+                    <ngx-dropzone-label>Upload</ngx-dropzone-label>
+                    <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                        <ngx-dropzone-label>{{ f.name }}</ngx-dropzone-label>
+                    </ngx-dropzone-preview>
+                </ngx-dropzone>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="import">
+            <th mat-header-cell *matHeaderCellDef> Import </th>
+            <td mat-cell *matCellDef="let element"> <button mat-raised-button
+                type="button"
+                (click)="download(element.name)"
+              >
+                Download
+              </button> </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+  </div>
+  <div style="margin-top: 1.5rem;">
+    <table class="data-table">
+      <tbody>
+        <tr *ngFor="let row of data">
+          <td *ngFor="let cell of row">
+            {{cell}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

@@ -1,0 +1,24 @@
+@import '@angular/material/theming';
+
+$primary: mat-palette($mat-blue, 700);
+
+$theme: mat-light-theme(
+  $primary,
+  $accent: mat-palette($mat-teal, A200),
+  $warn: mat-palette($mat-red)
+);
+
+@include angular-material-theme($theme);
+
+.mat-toolbar {
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1); // Add a subtle shadow
+}
+.title-bar {
+    background-color: black; // Use the primary color for the title bar
+    color: white;
+    padding: 10px;
+    text-align: center;
+  }
+.main-content {
+  padding: 20px;
+}
